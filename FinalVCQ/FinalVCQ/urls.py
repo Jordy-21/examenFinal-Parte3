@@ -21,6 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cursos/', views.cursos, name = "cursos"),
     path('carreras/', views.carreras, name = "carreras"),
+    path('save-curso/', views.save_curso, name = "save_curso"),
     path('crear-curso/',views.crear_curso,name="crear_curso"),
     path('crear-carrera/',views.crear_carrera,name="crear_carrera"),
+    path('eliminar-curso/<int:id>',views.eliminar_curso,name='eliminar_curso')
+
+
 ]

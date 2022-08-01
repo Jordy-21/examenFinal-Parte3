@@ -8,4 +8,40 @@
     <h1 class="title"> {{mensaje}} </h1>
     <p class="title"> --------------------------------------------------------------------- </p>
     <br>
+    {% if messages %}
+{% for message in messages %}
+<div class="message">
+{{message}}
+</div>
+{% endfor %}
+{% endif %}
+<table style="border: 1px solid #999">
+
+    <tr>
+  
+      <th>ID</th>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Horas</th>
+      <th>Creditos</th>
+      <th>Estado</th>
+      <th></th>
+
+    </tr>
+    {% for cursos in cursos %}
+    <tr>
+        
+        <td>{{cursos.id}}</td>
+        <td>{{cursos.code}}</td>
+        <td>{{cursos.name}}</td>
+        <td>{{cursos.hour}}</td>
+        <td>{{cursos.credits}}</td>
+        <td>{{cursos.state}}</td>
+        <td><a href="{% url 'eliminar_curso' id=cursos.id %}">Eliminar</a></td>
+    </tr>
+  
+    {% endfor %}
+  
+  </table>
+
 {% endblock %}
