@@ -8,5 +8,40 @@
     <h1 class="title"> {{mensaje}} </h1>
     <p class="title"> --------------------------------------------------------------------- </p>
     <br>
-    <h2></h2>
+    {% if messages %}
+{% for message in messages %}
+<div class="message">
+{{message}}
+</div>
+{% endfor %}
+{% endif %}
+<table style="border: 1px solid #999">
+
+    <tr>
+  
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>ShortName</th>
+      <th>Imagen</th>
+      <th>Estado</th>
+      <th></th>
+
+    </tr>
+    {% for career in career %}
+    <tr>
+        
+        <td>{{career.id}}</td>
+        <td>{{career.name}}</td>
+        <td>{{career.corto}}</td>
+        <td>
+          <img style="width: 50px; height: 50px;" src="/static/images/{{career.image}}">
+        </td>
+        <td>{{career.state}}</td>
+        <td><a href="{% url 'eliminar_career' id=career.id %}">Eliminar</a></td>
+    </tr>
+  
+    {% endfor %}
+  
+  </table>
+
 {% endblock %}

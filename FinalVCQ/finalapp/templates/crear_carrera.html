@@ -8,5 +8,20 @@
     <h1 class="title"> {{mensaje}} </h1>
     <p class="title"> --------------------------------------------------------------------- </p>
     <br>
-    <h2></h2>
+    <form action="{% url 'save_career' %}" method="GET">
+        <label for="name">Nombre de la carrera </label>
+        <textarea name="name" ></textarea>
+        <label for="corto">Short name</label>
+        <input type="text" name="corto"/>
+        <label for="image">Imagen</label>
+        <input type="text" name="image" />
+        <label for="state">Estado?</label>
+        <select name="state">
+        <option value="A"> Activo </option>
+        <option value="I"> Inactivo </option>
+        </select>
+
+        <input type="submit" value="Agregar" />
+        </form>
+        
 {% endblock %}

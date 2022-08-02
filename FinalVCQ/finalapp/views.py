@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, HttpResponse
+from finalapp.models import Career
 # Create your views here.
 from finalapp.models import Course 
 from django.contrib import messages
@@ -49,7 +50,9 @@ def crear_curso(request):
     })
 
 def carreras(request):
+    career = Career.objects.all()
     return render(request, 'carreras.html', {
+        'career': career,
         'titulo':'Carreras',
         'mensaje':'Listado de Carreras',
     })
@@ -60,4 +63,29 @@ def crear_carrera(request):
         'mensaje':'Agregar Carrera',
     })
 
+def eliminar_career(request, id):
+    career = Career.objects.get(pk=id)
+    career.delete()
+    return redirect('carreras')
 
+def save_career(request):
+    
+    if request.method == 'GET':
+        name = request.GET['name']
+        corto = request.GET['corto']
+        image = request.GET['image']
+        state = request.GET['state']
+        
+        career = Career(
+            name = name,
+            corto = corto,
+            image=image,
+            state=state
+        )
+        career.save()
+
+        messages.success(request, f'Se agregó correctamente la carrera llamada: {career.name}')
+        return redirect('carreras')
+
+    else:
+        return HttpResponse("<h2>No se ha podido registrar la carrera</h2>")
